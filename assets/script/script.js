@@ -42,6 +42,7 @@ var submitHandler = function (event) {
     } else {
         alert("Please enter the name of a City");
     }
+    localStorage.setItem('city', 'WeatherData');
 };
 userformEl.addEventListener("submit", submitHandler);
 
@@ -140,4 +141,11 @@ var displayForecast = function (data2) {
 }
 
 
-// var displayDate = 
+var saveInput = function(localStorage, buttonClick) {
+    var buttonClick = document.getElementById("cityname").value;
+    buttonClick = localStorage.getItem('city', 'WeatherData');
+    
+    
+
+
+}
