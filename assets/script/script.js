@@ -2,6 +2,8 @@ var citynameEl = document.querySelector("#cityname");
 var userformEl = document.querySelector("#user-form");
 var weatherContainerEL = document.querySelector("#weather-container");
 var forecastEl = document.querySelector("#forecast");
+var localStorageEl = document.querySelector("#localstorage");
+var cityButtonsEl = document.querySelector("#city-buttons")
 
 
 var getWeather = function (city) {
@@ -42,7 +44,7 @@ var submitHandler = function (event) {
     } else {
         alert("Please enter the name of a City");
     }
-    localStorage.setItem('city', 'WeatherData');
+    localStorage.setItem('city', cityInput);
 };
 userformEl.addEventListener("submit", submitHandler);
 
@@ -80,6 +82,7 @@ var displayWeather = function (data) {
     divEl.appendChild(windEl);
     divEl.appendChild(humidEl);
     weatherContainerEL.appendChild(divEl);
+    localStorage.setItem(divEl, weatherContainerEL);
 }
 
 var displayForecast = function (data2) {
@@ -94,7 +97,7 @@ var displayForecast = function (data2) {
     } else if (data2.current.uvi <= 5) {
         riskEl.className = "moderate"
 
-    } else if (data2.current.uvi <= 6) {
+    } else if (data2.current.uvi >= 6) {
         riskEl.className = "severe"
 
     }
@@ -102,12 +105,13 @@ var displayForecast = function (data2) {
     uviEl.appendChild(riskEl);
     divEl.appendChild(uviEl);
 
-   
+
     var titleEl = document.createElement("h3");
     titleEl.textContent = "5 day Forecast:"
     forecastEl.appendChild(titleEl);
-    
+    forecastEl.textContent = '';
     for (let i = 0; i < 5; i++) {
+       
         var weatherEl = document.createElement("div");
 
         var tempEl = document.createElement("p");
@@ -135,17 +139,22 @@ var displayForecast = function (data2) {
         weatherEl.appendChild(humidEl);
         forecastEl.appendChild(weatherEl);
     }
-   
+
     weatherContainerEL.appendChild(divEl);
-    
+
 }
 
 
-var saveInput = function(localStorage, buttonClick) {
+var saveInput = function (localStorage, buttonClick) {
     var buttonClick = document.getElementById("cityname").value;
-    buttonClick = localStorage.getItem('city', 'WeatherData');
-    
-    
+    buttonClick = localStorage.getItem('city', cityInput);
+
+    // var city = buttonClick.getAttribute(cityInput);
+    // var cityel = document.createElement("div");
+    // cityel.textContent = city;
+    // cityButtonsEl.appendChild(cityel);
 
 
 }
+    
+
