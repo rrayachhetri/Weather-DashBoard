@@ -1,0 +1,29 @@
+.date {
+    display: inline;
+    padding-left: 7px;
+}
+
+.icon {
+    display: inline;
+   margin-bottom: -20px;
+   padding-left: 7px;
+}
+
+.favourable {
+   background-color: blueviolet;
+   color: white;
+   padding: 0 7px;
+
+}
+
+.moderate {
+    background-color: green;
+     color: white;
+      padding: 0 7px;
+}
+
+.severe {
+    background-color: red;
+     color: white;
+      padding: 0 7px;
+}
