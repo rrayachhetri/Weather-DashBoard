@@ -110,20 +110,20 @@ var displayForecast = function (data2) {
         riskEl.className = "severe"
 
     }
-
     uviEl.appendChild(riskEl);
     divEl.appendChild(uviEl);
     var titleEl = document.createElement("h3");
     titleEl.textContent = "5 day Forecast:"
     forecastEl.appendChild(titleEl);
     forecastEl.textContent = '';
+
     for (let i = 0; i < 5; i++) {
         var weatherEl = document.createElement("div");
         var tempEl = document.createElement("p");
         tempEl.textContent = "Temp: " + data2.daily[i].temp.day + " °C";
         // console.log(tempEl);
         var dateEl = document.createElement("p");
-        var date = moment().format("(MM/DD/YYYY)");
+        var date = moment().add(i+1, 'days').format("(MM/DD/YYYY)");
         dateEl.textContent = date;
         // console.log(dateEl);
         var imgEl = document.createElement('img');
