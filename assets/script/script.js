@@ -2,7 +2,7 @@ var citynameEl = document.querySelector("#cityname");
 var userformEl = document.querySelector("#user-form");
 var weatherContainerEL = document.querySelector("#weather-container");
 var forecastEl = document.querySelector("#forecast");
-var localStorageEl = document.querySelector("#localstorage");
+var dataStorageEl = document.querySelector("#dataStorage");
 var cityButtonsEl = document.querySelector("#city-buttons")
 
 
@@ -44,11 +44,20 @@ var submitHandler = function (event) {
     } else {
         alert("Please enter the name of a City");
     }
-    localStorage.setItem('city', cityInput);
+    var btnDiv = document.createElement("button");
+    console.log(btnDiv);
+    btnDiv.textContent = cityInput;
+    btnDiv.addEventListener("click", () => {
+            getWeatherHistory(cityInput);
+        });
+    dataStorageEl.appendChild(btnDiv);
 };
 userformEl.addEventListener("submit", submitHandler);
 
-// clear old content
+var getWeatherHistory = function (city) {
+    weatherContainerEL.textContent = '';
+    getWeather(city);
+}
 
 var displayWeather = function (data) {
     // clear old content
@@ -82,7 +91,7 @@ var displayWeather = function (data) {
     divEl.appendChild(windEl);
     divEl.appendChild(humidEl);
     weatherContainerEL.appendChild(divEl);
-    localStorage.setItem(divEl, weatherContainerEL);
+    // localStorage.setItem(divEl, weatherContainerEL);
 }
 
 var displayForecast = function (data2) {
@@ -104,16 +113,12 @@ var displayForecast = function (data2) {
 
     uviEl.appendChild(riskEl);
     divEl.appendChild(uviEl);
-
-
     var titleEl = document.createElement("h3");
     titleEl.textContent = "5 day Forecast:"
     forecastEl.appendChild(titleEl);
     forecastEl.textContent = '';
     for (let i = 0; i < 5; i++) {
-       
         var weatherEl = document.createElement("div");
-
         var tempEl = document.createElement("p");
         tempEl.textContent = "Temp: " + data2.daily[i].temp.day + " °C";
         // console.log(tempEl);
@@ -124,13 +129,10 @@ var displayForecast = function (data2) {
         var imgEl = document.createElement('img');
         var iconURL = "https://openweathermap.org/img/w/" + data2.daily[i].weather[0].icon + ".png";
         imgEl.setAttribute("src", iconURL);
-
         var humidEl = document.createElement("p");
         humidEl.textContent = "Humidity: " + data2.daily[i].humidity + " %";
-
         var windEl = document.createElement("p");
         windEl.textContent = "Wind: " + data2.daily[i].wind_speed + " MPH";
-
 
         weatherEl.appendChild(dateEl);
         weatherEl.appendChild(imgEl);
@@ -145,16 +147,6 @@ var displayForecast = function (data2) {
 }
 
 
-var saveInput = function (localStorage, buttonClick) {
-    var buttonClick = document.getElementById("cityname").value;
-    buttonClick = localStorage.getItem('city', cityInput);
-
-    // var city = buttonClick.getAttribute(cityInput);
-    // var cityel = document.createElement("div");
-    // cityel.textContent = city;
-    // cityButtonsEl.appendChild(cityel);
 
 
-}
-    
 
