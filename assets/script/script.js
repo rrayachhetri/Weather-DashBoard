@@ -3,7 +3,7 @@ var userformEl = document.querySelector("#user-form");
 var weatherContainerEL = document.querySelector("#weather-container");
 var forecastEl = document.querySelector("#forecast");
 var dataStorageEl = document.querySelector("#dataStorage");
-var cityButtonsEl = document.querySelector("#city-buttons")
+
 
 
 var getWeather = function (city) {
