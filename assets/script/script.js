@@ -106,16 +106,19 @@ var displayForecast = function (data2) {
     } else if (data2.current.uvi <= 5) {
         riskEl.className = "moderate"
 
-    } else if (data2.current.uvi >= 6) {
+    } else if (data2.current.uvi > 5) {
         riskEl.className = "severe"
 
     }
     uviEl.appendChild(riskEl);
     divEl.appendChild(uviEl);
+
+
     var titleEl = document.createElement("h3");
-    titleEl.textContent = "5 day Forecast:"
-    forecastEl.appendChild(titleEl);
+    titleEl.textContent = "5 Days Forecast:"
     forecastEl.textContent = '';
+    forecastEl.appendChild(titleEl);
+  
 
     for (let i = 0; i < 5; i++) {
         var weatherEl = document.createElement("div");
